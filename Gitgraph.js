@@ -98,6 +98,8 @@ var Gitgraph = function(args){
 		this.width 	= 416;
 		this.height = 20;
 		this.node 	= args.domNode ? args.domNode : document.body;
+		if (!Function.prototype.bind)
+		  Function.prototype.bind = this.bind;
 		
 		if(!window.dojo)
 			this.loadScript('http://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dojo/dojo.js',this.kickStart.bind(this));
