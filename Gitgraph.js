@@ -131,6 +131,7 @@ if (window.jQuery) {
 	                user    : args.user,     
 	                domNode : $(this)[0], 
 	                repo : args.repo
+				    width: args.width ? args.width || '416px'
 	            });
 	        });
 		}
