@@ -12,7 +12,7 @@ var Gitgraph = function(args){
 
 			var img = dojo.create('img',{
 				src:'https://a248.e.akamai.net/assets.github.com/images/modules/dashboard/dossier/participation_legend.png?1315937721',
-				style:'position:relative;top:-4px;'
+				style:'position:relative;top:-4px;width:'+this.width+'px;'
 			},this.graphContainer);
 			if(this.stretch)
 				dojo.style(img,'width',this.width+'px');
@@ -91,9 +91,6 @@ var Gitgraph = function(args){
 					preventCache: true,
 					load: dojo.hitch(this,function(data){
 						this.data = data;
-						this.width = this.graphContainer.offsetWidth-14;
-						if(!this.stretch)
-							this.width = 416;
 						this.go();
 					})
 				});	
@@ -112,12 +109,12 @@ var Gitgraph = function(args){
 			this.kickStart.bind(this)();
 	}
 	
+	this.width = args.width ? parseInt(args.width.substring(0,args.width.length-2)) : 416;
 	this.graphContainer = document.createElement('div');
 	this.graphContainer.innerHTML = '<img src="http://biganimals.com/wp-content/themes/biganimals/images/loading_transparent_4.gif"/>';
 	this.graphContainer.style.cssText = 'border-radius:3px;border:1px solid #E5E5E5;'
 	+'background:white;height:55px;text-align:center;';
-	if(!this.stretch)
-		dojo.style(this.graphContainer,'width','430px');
+	dojo.style(this.graphContainer,'width',(this.width+14)+'px');
 	this.node.appendChild(this.graphContainer);
 	
 	return this.graphContainer;

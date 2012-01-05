@@ -26,7 +26,7 @@ Pure JS github participation graph using canvas element. To see it in action, vi
 	  user    : 'bouchon',                // any github username
 	  repo    : 'coweb',                  // name of repo
 	  domNode : document.body,            // (optional) domNode to attach to 
-	  stretch : false                     // (optional) stretch to fit container?
+	  width   : '416px'                   // (optional) custom graph width
 	});
 	```
 
@@ -36,7 +36,7 @@ Pure JS github participation graph using canvas element. To see it in action, vi
 	$('#demoHolder').gitgraph({
 		user:'bouchon',    // any github username
 		repo:'coweb',      // name of repo
-		stretch : false    // (optional) stretch to fit container?
+		width: '416px'     // (optional) custom graph width
 	});
 	```
 	
