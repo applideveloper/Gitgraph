@@ -2,7 +2,7 @@
 
 Pure JS github participation graph using canvas element. To see it in action, visit [gitgraph.logicalcognition.com](http://gitgraph.logicalcognition.com).
 
-![Alt text](http://logicalcognition.com/Projects/Gitgraph/demo/images/screenshot.png)
+![Alt text](http://logicalcognition.com/Projects/Gitgraph/demo/images/screenshot-new.png)
 
 ##Supported Browsers
 
