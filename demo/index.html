@@ -39,11 +39,16 @@
 var graph = new Gitgraph({ 
   user    : 'bouchon',      // any github username
   repo    : 'coweb',        // name of repo
-  domNode : document.body,  // domNode to attach to (optional)
+  domNode : document.body,  // domNode to attach to (optional),
+  stretch : false           // (optional) stretch to fit container?
 });</pre>
 			Or use it as a jQuery plugin
 			<pre class="prettyprint code">
-$('#demoHolder').gitgraph({user:'bouchon',repo:'coweb'});</pre>
+$('#demoHolder').gitgraph({
+	user:'bouchon',    // any github username
+	repo:'coweb',      // name of repo
+	stretch : false    // (optional) stretch to fit container?
+});</pre>
 
 			FYI, the script uses a little Dojo, and will require it if its not already loaded. Nothing to worry about!<br><br>
 			<span class="examples">Issues & Features</span><br>

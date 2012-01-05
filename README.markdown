@@ -25,14 +25,19 @@ Pure JS github participation graph using canvas element. To see it in action, vi
 	var graph = new Gitgraph({ 
 	  user    : 'bouchon',                // any github username
 	  repo    : 'coweb',                  // name of repo
-	  domNode : document.body,  // domNode to attach to (optional)
+	  domNode : document.body,            // (optional) domNode to attach to 
+	  stretch : false                     // (optional) stretch to fit container?
 	});
 	```
 
 * Or use it as a jQuery plugin
 
 	```console
-	$('#demoHolder').gitgraph({user:'bouchon',repo:'coweb'});
+	$('#demoHolder').gitgraph({
+		user:'bouchon',    // any github username
+		repo:'coweb',      // name of repo
+		stretch : false    // (optional) stretch to fit container?
+	});
 	```
 	
 FYI, the script uses a little Dojo, and will require it if its not already loaded. Nothing to worry about!

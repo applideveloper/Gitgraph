@@ -12,8 +12,10 @@ var Gitgraph = function(args){
 
 			var img = dojo.create('img',{
 				src:'https://a248.e.akamai.net/assets.github.com/images/modules/dashboard/dossier/participation_legend.png?1315937721',
-				style:'position:relative;top:-4px'
+				style:'position:relative;top:-4px;'
 			},this.graphContainer);
+			if(this.stretch)
+				dojo.style(img,'width',this.width+'px');
 			var context	= this.canvas.getContext("2d"),
 				width	= this.width / this.total.length,
 				height 	= this.height,
@@ -89,15 +91,20 @@ var Gitgraph = function(args){
 					preventCache: true,
 					load: dojo.hitch(this,function(data){
 						this.data = data;
+						this.width = this.graphContainer.offsetWidth-14;
+						if(!this.stretch){
+							this.width = 416;
+							dojo.style(this.graphContainer,'width','430px');
+						}
 						this.go();
 					})
 				});	
 			});
 		};
 		
-		this.width 	= 416;
 		this.height = 20;
 		this.node 	= args.domNode ? args.domNode : document.body;
+		this.stretch = args.stretch ? args.stretch : false;
 		if (!Function.prototype.bind)
 		  Function.prototype.bind = this.bind;
 		
@@ -110,7 +117,7 @@ var Gitgraph = function(args){
 	this.graphContainer = document.createElement('div');
 	this.graphContainer.innerHTML = '<img src="http://biganimals.com/wp-content/themes/biganimals/images/loading_transparent_4.gif"/>';
 	this.graphContainer.style.cssText = 'border-radius:3px;border:1px solid #E5E5E5;'
-	+'background:white;height:55px;width:430px;text-align:center;';
+	+'background:white;height:55px;text-align:center;';
 	this.node.appendChild(this.graphContainer);
 	
 	return this.graphContainer;
