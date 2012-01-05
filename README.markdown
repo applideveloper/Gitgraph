@@ -34,6 +34,8 @@ Pure JS github participation graph using canvas element. To see it in action, vi
 	```console
 	$('#demoHolder').gitgraph({user:'bouchon',repo:'coweb'});
 	```
+	
+FYI, the script uses a little Dojo, and will require it if its not already loaded. Nothing to worry about!
 
 ##Issues & Features
 
