@@ -16,7 +16,7 @@ var Gitgraph = function(args){
 			//3. Create bottom of graph img
 			var img = dojo.create('img',{
 				src:'http://logicalcognition.com/files/gitgraphFiles/gitgraph.png',
-				style:'position:relative;top:-12px;'
+				style:'position:relative;top:-11px;'
 			},this.graphContainer);
 			var currHeight = img.offsetHeight;
 			dojo.style(img,'width',this.width+'px');
@@ -102,7 +102,7 @@ var Gitgraph = function(args){
 		//build container
 		this.graphContainer = dojo.create('div',{
 			innerHTML:'<img src="http://biganimals.com/wp-content/themes/biganimals/images/loading_transparent_4.gif"/>',
-			style:'border-radius:3px;border:1px solid #E5E5E5;background:white;height:55px;text-align:center;width:'+(this.width+14)+'px'
+			style:'line-height:15px;border-radius:3px;border:1px solid #E5E5E5;background:white;height:55px;text-align:center;width:'+(this.width+14)+'px'
 		},this.node,'last');
 
 		return this.graphContainer;
