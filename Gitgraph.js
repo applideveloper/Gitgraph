@@ -100,7 +100,7 @@ var Gitgraph = function(args){
 		this.graphContainer = dojo.create('div',{
 			innerHTML:'<img src="http://biganimals.com/wp-content/themes/biganimals/images/loading_transparent_4.gif"/>',
 			style:'border-radius:3px;border:1px solid #E5E5E5;background:white;height:55px;text-align:center;width:'+(this.width+14)+'px'
-		}this.node,'last');
+		},this.node,'last');
 
 		return this.graphContainer;
 	}
