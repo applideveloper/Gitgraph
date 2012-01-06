@@ -21,6 +21,25 @@ var Gitgraph = function(args){
 			var currHeight = img.offsetHeight;
 			dojo.style(img,'width',this.width+'px');
 			dojo.style(img,'height','4px');
+			dojo.create('br',{},img,'after');
+			dojo.create('span',{
+				innerHTML:'52 week participation',
+				style:'position:absolute;right:7px;font:10px arial;'
+			},img,'after');
+			dojo.create('span',{
+				innerHTML:'commits by owner',
+				style:'position:absolute;left:82px;font:10px arial;'
+			},img,'after');
+			dojo.create('span',{
+				innerHTML:'all commits',
+				style:'position:absolute;left:16px;float:left;font:10px arial;'
+			},img,'after');
+			dojo.create('div',{
+				style:'display:inline-block;position:absolute;left:7px;background:lightgrey;width:7px;height:7px;top:35px'
+			},img,'after');
+			dojo.create('div',{
+				style:'display:inline-block;position:absolute;left:73px;background:#3377CC;width:7px;height:7px;top:35px'
+			},img,'after');
 			
 			///4. Populate canvas with data points
 			var context	= this.canvas.getContext("2d"),
@@ -102,7 +121,7 @@ var Gitgraph = function(args){
 		//build container
 		this.graphContainer = dojo.create('div',{
 			innerHTML:'<img src="http://biganimals.com/wp-content/themes/biganimals/images/loading_transparent_4.gif"/>',
-			style:'line-height:15px;border-radius:3px;border:1px solid #E5E5E5;background:white;height:55px;text-align:center;width:'+(this.width+14)+'px'
+			style:'color:grey;position:relative;line-height:15px;border-radius:3px;border:1px solid #E5E5E5;background:white;height:55px;text-align:center;width:'+(this.width+14)+'px'
 		},this.node,'last');
 
 		return this.graphContainer;
