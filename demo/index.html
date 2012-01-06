@@ -11,56 +11,14 @@
 		<script src="../Gitgraph.js"></script>
   	</head>
 	<body onload="prettyPrint()">
-		<div class="title">Gitgraph</div>
-		<div class="subtitle">
-			pure js github participation graph
-		</div>
-		<div id="demo">
-			<span class="examples">Example</span><span class="features">Features</span><br>
-			<div id="demoHolder"></div>
-			<div id="featureHolder">
-				<ul>
-					<li>Uses canvas element similar to how Github does it</li>
-					<li>Can be used as a jQuery plugin</li>
-					<li>All data 100% live</li>
-					<li>No additional style sheet required</li>
-					<li>Compatible with all JS frameworks</li>
-					<li><a href="http://sam.zoy.org/wtfpl/" target="_blank">WTFPL</a> license</li>
-				</ul>
-			</div>
-		</div>
-		<div id="usage">
-			<span class="examples">Usage</span><br>
-			Paste into your page's HEAD
-			<pre class="prettyprint code">
-&lt;script src="http://logicalcognition.com/Projects/Gitgraph/Gitgraph.js"&gt;&lt;/script&gt;</pre>
-			From within a &lt;script&gt; tag or a JS file
-			<pre class="prettyprint code">
-var graph = new Gitgraph({ 
-  user    : 'bouchon',      // any github username
-  repo    : 'coweb',        // name of repo
-  domNode : document.body,  // domNode to attach to (optional),
-  width   : '416px'         // (optional) custom graph width
-});</pre>
-			Or use it as a jQuery plugin
-			<pre class="prettyprint code">
-$('#demoHolder').gitgraph({
-	user:'bouchon',    // any github username
-	repo:'coweb',      // name of repo
-	width:'416px'      // (optional) custom graph width
-});</pre>
 
-			FYI, the script uses a little Dojo, and will require it if its not already loaded. Nothing to worry about!<br><br>
-			<span class="examples">Issues & Features</span><br>
-			Report any issues and features (I'm sure I missed a lot of stuff) on <a href="https://github.com/bouchon/Gitgraph" target="_blank">Github</a>.
-		</div>
-		<a href="https://github.com/bouchon/Gitgraph" target="_blank"><img style="cursor:hand;cursor:pointer; position: absolute; top: 0; right: 0; border: 0;" src="images/fork.png" alt="Fork me on GitHub"></a>
   	</body>
 	<script>
 		var graph = new Gitgraph({ 
 		  user    : 'bouchon',      // any github username
 		  repo    : 'coweb',        // name of repo
-		  domNode : document.getElementById('demoHolder'),  // domNode to attach to (optional)
+		  domNode : document.body,  // domNode to attach to (optional)
+		  width   : '800px'
 		});
 		console.log(graph);
 	</script>
