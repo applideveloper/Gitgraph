@@ -15,12 +15,12 @@ var Gitgraph = function(args){
 			
 			//3. Create bottom of graph img
 			var img = dojo.create('img',{
-				src:'https://a248.e.akamai.net/assets.github.com/images/modules/dashboard/dossier/participation_legend.png?1315937721',
-				style:'position:relative;top:-4px;'
+				src:'http://logicalcognition.com/files/gitgraphFiles/gitgraph.png',
+				style:'position:relative;top:-12px;'
 			},this.graphContainer);
 			var currHeight = img.offsetHeight;
 			dojo.style(img,'width',this.width+'px');
-			dojo.style(img,'height',currHeight+'px');
+			dojo.style(img,'height','4px');
 			
 			///4. Populate canvas with data points
 			var context	= this.canvas.getContext("2d"),
