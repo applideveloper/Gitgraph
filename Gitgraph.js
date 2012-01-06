@@ -1,21 +1,25 @@
 var Gitgraph = function(args){
 	if(!args || !args.user || !args.repo){
 		throw new Error('Gitgraph: missing user and/or repo arg ');
-	}else{		
+	}else{
+		
+		//Rips through data point arrays and renders canvas		
 		this.go = function(){
-			this.total 	= this.data.all;
-			this.own	= this.data.owner;
+			//1. Vars
+			this.total 	= this.data.all;	//array of all commit data points
+			this.own	= this.data.owner;	//array of just your commit data points
 
-			//Populate canvas
+			//2. Create canvas
 			this.graphContainer.innerHTML = '';
 			this.canvas	= dojo.create('canvas',{width:this.width,height:this.height,style:'position:relative;margin-top:11px;'},this.graphContainer);
-
+			
+			//3. Create bottom of graph img
 			var img = dojo.create('img',{
 				src:'https://a248.e.akamai.net/assets.github.com/images/modules/dashboard/dossier/participation_legend.png?1315937721',
 				style:'position:relative;top:-4px;width:'+this.width+'px;'
 			},this.graphContainer);
-			if(this.stretch)
-				dojo.style(img,'width',this.width+'px');
+			
+			///4. Populate canvas with data points
 			var context	= this.canvas.getContext("2d"),
 				width	= this.width / this.total.length,
 				height 	= this.height,
@@ -31,57 +35,41 @@ var Gitgraph = function(args){
 			dojo.forEach(this.own, render);
 		};
 		
+		//Dynamically load JS
 		this.loadScript = function(sScriptSrc,callbackfunction) {
-			//gets document head element
 			var oHead = document.getElementsByTagName('head')[0];
-			if(oHead){
-				//creates a new script tag		
+			if(oHead){	
 				var oScript = document.createElement('script');
-
-				//adds src and type attribute to script tag
 				oScript.setAttribute('src',sScriptSrc);
 				oScript.setAttribute('type','text/javascript');
-
-				//calling a function after the js is loaded (IE)
-				var loadFunction = function()
-					{
-						if (this.readyState == 'complete' || this.readyState == 'loaded')
-						{
-							callbackfunction(); 
-						}
-					};
+				var loadFunction = function(){
+					if (this.readyState == 'complete' || this.readyState == 'loaded')
+						callbackfunction(); 
+				};
 				oScript.onreadystatechange = loadFunction;
-
-				//calling a function after the js is loaded (Firefox)
-				oScript.onload = callbackfunction;
-
-				//append the script tag to document head element		
+				oScript.onload = callbackfunction;	
 				oHead.appendChild(oScript);
 			}
 		};
-
+		
+		//Bind for browsers that don't have it
 		this.bind = function (oThis) {
-			if (typeof this !== "function") {
-			  // closest thing possible to the ECMAScript 5 internal IsCallable function
+			if (typeof this !== "function")
 			  throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
-			}
-
 			var aArgs = Array.prototype.slice.call(arguments, 1), 
-			    fToBind = this, 
-			    fNOP = function () {},
+			    fToBind = this, fNOP = function () {},
 			    fBound = function () {
 			      return fToBind.apply(this instanceof fNOP
-			                             ? this
-			                             : oThis || window,
-			                           aArgs.concat(Array.prototype.slice.call(arguments)));
+		                ? this
+		                : oThis || window,
+		              aArgs.concat(Array.prototype.slice.call(arguments)));
 			    };
-
 			fNOP.prototype = this.prototype;
 			fBound.prototype = new fNOP();
-
 			return fBound;
 		};
 		
+		//Kick things off
 		this.kickStart = function(){
 			dojo.ready(this, function(){
 				//Get particiption data
@@ -97,26 +85,25 @@ var Gitgraph = function(args){
 			});
 		};
 		
+		//Initialization
 		this.height = 20;
+		this.width = args.width ? parseInt(args.width.substring(0,args.width.length-2)) : 416;
 		this.node 	= args.domNode ? args.domNode : document.body;
 		if (!Function.prototype.bind)
 		  Function.prototype.bind = this.bind;
-		
 		if(!window.dojo)
 			this.loadScript('http://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dojo/dojo.js',this.kickStart.bind(this));
 		else
 			this.kickStart.bind(this)();
+		
+		//build container
+		this.graphContainer = dojo.create('div',{
+			innerHTML:'<img src="http://biganimals.com/wp-content/themes/biganimals/images/loading_transparent_4.gif"/>',
+			style:'border-radius:3px;border:1px solid #E5E5E5;background:white;height:55px;text-align:center;width:'+(this.width+14)+'px';
+		}this.node,'last');
+
+		return this.graphContainer;
 	}
-	
-	this.width = args.width ? parseInt(args.width.substring(0,args.width.length-2)) : 416;
-	this.graphContainer = document.createElement('div');
-	this.graphContainer.innerHTML = '<img src="http://biganimals.com/wp-content/themes/biganimals/images/loading_transparent_4.gif"/>';
-	this.graphContainer.style.cssText = 'border-radius:3px;border:1px solid #E5E5E5;'
-	+'background:white;height:55px;text-align:center;';
-	dojo.style(this.graphContainer,'width',(this.width+14)+'px');
-	this.node.appendChild(this.graphContainer);
-	
-	return this.graphContainer;
 };
 
 //Make Jquery folks happy
