@@ -86,7 +86,7 @@ var Gitgraph = function(args){
 			dojo.ready(this, function(){
 				//Get particiption data
 				dojo.xhrGet({
-					url: 'http://logicalcognition.com/files/gitgraph.php?user='+args.user+'&repo='+args.repo,
+					url: 'http://logicalcognition.com/files/gitgraphFiles/gitgraph.php?user='+args.user+'&repo='+args.repo,
 					handleAs: 'json',
 					preventCache: true,
 					load: dojo.hitch(this,function(data){
@@ -99,7 +99,6 @@ var Gitgraph = function(args){
 		
 		this.height = 20;
 		this.node 	= args.domNode ? args.domNode : document.body;
-		this.stretch = args.stretch ? args.stretch : false;
 		if (!Function.prototype.bind)
 		  Function.prototype.bind = this.bind;
 		
@@ -130,8 +129,8 @@ if (window.jQuery) {
 	            var view = new Gitgraph({ 
 	                user    : args.user,     
 	                domNode : $(this)[0], 
-	                repo : args.repo
-				    width: args.width ? args.width || '416px'
+	                repo : args.repo,
+				    width: args.width ? args.width : '416px'
 	            });
 	        });
 		}
