@@ -102,6 +102,13 @@ var Gitgraph = function(args){
 					load: dojo.hitch(this,function(data){
 						this.data = data;
 						this.go();
+					}),
+					error: dojo.hitch(this,function(e){
+						this.graphContainer.innerHTML = '';
+						dojo.create('div',{
+							innerHTML:'Can not find repository.',
+							style:'margin-top:20px;font:12px arial;'
+						},this.graphContainer);
 					})
 				});	
 			});
