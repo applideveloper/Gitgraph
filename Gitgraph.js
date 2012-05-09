@@ -1,48 +1,78 @@
+//
+// Pure JS GitHub participation graph
+// http://bouchon.github.com/Gitgraph
+//
+
 var Gitgraph = function(args){
 	if(!args || !args.user || !args.repo){
 		throw new Error('Gitgraph: missing user and/or repo arg ');
 	}else{
-		
 		//Rips through data point arrays and renders canvas		
 		this.go = function(){
 			//1. Vars
 			this.total 	= this.data.all;	//array of all commit data points
 			this.own	= this.data.owner;	//array of just your commit data points
-
 			//2. Create canvas
-			this.graphContainer.innerHTML = '';
-			this.canvas	= dojo.create('canvas',{width:this.width,height:this.height,style:'position:relative;margin-top:11px;'},this.graphContainer);
-			
+			this.createCanvas();
 			//3. Create bottom of graph img
-			var img = dojo.create('img',{
-				src:'http://logicalcognition.com/files/gitgraphFiles/gitgraph.png',
+			this.createLower();
+			//4. Populate canvas with data points
+			this.populate();
+		};
+		
+		//Render canvas element
+		this.createCanvas = function(){
+		    this.graphContainer.innerHTML = '';
+			this.canvas	= dojo.create('canvas',{
+			    width:this.width,height:this.height,style:'position:relative;margin-top:11px;'
+			},this.graphContainer);
+		};
+		
+		//Render bottom part of graph
+		this.createLower = function(){
+		    var img = this.createKey();
+		    //Participation key
+			dojo.create('span',{
+				innerHTML:'52 week participation',
+				style:'position:absolute;right:7px;font:10px arial;'
+			},img,'after');
+			//Commits by owner key
+			dojo.create('span',{
+				innerHTML:'commits by owner',
+				style:'position:absolute;left:82px;font:10px arial;'
+			},img,'after');
+			//All commits key
+			dojo.create('span',{
+				innerHTML:'all commits',
+				style:'position:absolute;left:16px;float:left;font:10px arial;'
+			},img,'after');
+			//Color legends
+			dojo.create('div',{
+				style:'display:inline-block;position:absolute;left:7px;'+
+				    'background:lightgrey;width:7px;height:7px;top:35px'
+			},img,'after');
+			dojo.create('div',{
+				style:'display:inline-block;position:absolute;left:73px;'+
+				    'background:#3377CC;width:7px;height:7px;top:35px'
+			},img,'after');
+		};
+		
+		//Builds graph key
+		this.createKey = function(){
+		    var img = dojo.create('img',{
+				src:'http://bouchon.github.com/Gitgraph/bin/gitgraph.png',
 				style:'position:relative;top:-11px;'
 			},this.graphContainer);
 			var currHeight = img.offsetHeight;
 			dojo.style(img,'width',this.width+'px');
 			dojo.style(img,'height','4px');
 			dojo.create('br',{},img,'after');
-			dojo.create('span',{
-				innerHTML:'52 week participation',
-				style:'position:absolute;right:7px;font:10px arial;'
-			},img,'after');
-			dojo.create('span',{
-				innerHTML:'commits by owner',
-				style:'position:absolute;left:82px;font:10px arial;'
-			},img,'after');
-			dojo.create('span',{
-				innerHTML:'all commits',
-				style:'position:absolute;left:16px;float:left;font:10px arial;'
-			},img,'after');
-			dojo.create('div',{
-				style:'display:inline-block;position:absolute;left:7px;background:lightgrey;width:7px;height:7px;top:35px'
-			},img,'after');
-			dojo.create('div',{
-				style:'display:inline-block;position:absolute;left:73px;background:#3377CC;width:7px;height:7px;top:35px'
-			},img,'after');
-			
-			///4. Populate canvas with data points
-			var context	= this.canvas.getContext("2d"),
+			return img;
+		};
+		
+		//Populates graph with data points
+		this.populate = function(){
+		    var context	= this.canvas.getContext("2d"),
 				width	= this.width / this.total.length,
 				height 	= this.height,
 				max		= Math.max.apply(Math, this.total),
@@ -96,7 +126,7 @@ var Gitgraph = function(args){
 			dojo.ready(this, function(){
 				//Get particiption data
 				dojo.xhrGet({
-					url: 'http://logicalcognition.com/files/gitgraphFiles/gitgraph.php?user='+args.user+'&repo='+args.repo,
+					url: 'http://bouchon.github.com/Gitgraph/bin/gitgraph.php?user='+args.user+'&repo='+args.repo,
 					handleAs: 'json',
 					preventCache: true,
 					load: dojo.hitch(this,function(data){
@@ -116,21 +146,19 @@ var Gitgraph = function(args){
 		
 		//Initialization
 		this.height = 20;
-		this.width = args.width ? parseInt(args.width.substring(0,args.width.length-2)) : 416;
+		this.width  = args.width ? parseInt(args.width.substring(0,args.width.length-2)) : 416;
 		this.node 	= args.domNode ? args.domNode : document.body;
-		if (!Function.prototype.bind)
-		  Function.prototype.bind = this.bind;
+		if (!Function.prototype.bind) Function.prototype.bind = this.bind;
 		if(!window.dojo)
 			this.loadScript('http://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dojo/dojo.js',this.kickStart.bind(this));
-		else
-			this.kickStart.bind(this)();
+		else this.kickStart.bind(this)();
 		
 		//build container
 		this.graphContainer = dojo.create('div',{
 			innerHTML:'<img src="http://biganimals.com/wp-content/themes/biganimals/images/loading_transparent_4.gif"/>',
 			style:'color:grey;position:relative;line-height:15px;border-radius:3px;border:1px solid #E5E5E5;background:white;height:55px;text-align:center;width:'+(this.width+14)+'px'
 		},this.node,'last');
-
+		
 		return this.graphContainer;
 	}
 };
