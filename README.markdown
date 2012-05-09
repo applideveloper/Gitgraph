@@ -26,7 +26,7 @@ Pure JS github participation graph using canvas element. [Demo](http://bouchon.g
 	```javascript
 	$('#demoHolder').gitgraph({
 		user:'bouchon',          // any github username
-		repo:'coweb',            // name of repo
+		repo:'Gitgraph',            // name of repo
 		width: '416px'           // (optional) custom graph width
 	});
 	```
