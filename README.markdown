@@ -7,7 +7,7 @@ Pure JS github participation graph using canvas element. [Demo](http://bouchon.g
 * Paste into your page's HEAD
 
 	```console
-	<script src="http://logicalcognition.com/Projects/Gitgraph/Gitgraph.js"></script>
+	<script src="http://raw.github.com/bouchon/Gitgraph/master/Gitgraph.js"></script>
 	```
 
 * From within a script tag or a JS file
