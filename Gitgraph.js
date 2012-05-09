@@ -124,6 +124,12 @@ var Gitgraph = function(args){
 		//Kick things off
 		this.kickStart = function(){
 			dojo.ready(this, function(){
+			    //Touch up graph container
+			    dojo.attr(this.graphContainer, 'innerHTML',
+			        '<img src="http://biganimals.com/wp-content/themes/biganimals/images/loading_transparent_4.gif"/>');
+			    dojo.attr(this.graphContainer, 'style',
+			        'color:grey;position:relative;line-height:15px;border-radius:3px;border:1px solid #E5E5E5;'+
+			        'background:white;height:55px;text-align:center;width:'+(this.width+14)+'px');
 				//Get particiption data
 				dojo.xhrGet({
 					url: 'http://bouchon.github.com/Gitgraph/bin/gitgraph.php?user='+args.user+'&repo='+args.repo,
@@ -154,10 +160,8 @@ var Gitgraph = function(args){
 		else this.kickStart.bind(this)();
 		
 		//build container
-		this.graphContainer = dojo.create('div',{
-			innerHTML:'<img src="http://biganimals.com/wp-content/themes/biganimals/images/loading_transparent_4.gif"/>',
-			style:'color:grey;position:relative;line-height:15px;border-radius:3px;border:1px solid #E5E5E5;background:white;height:55px;text-align:center;width:'+(this.width+14)+'px'
-		},this.node,'last');
+		this.graphContainer = document.creatElement('div');
+		this.node.appendChild(this.graphContainer);
 		
 		return this.graphContainer;
 	}
