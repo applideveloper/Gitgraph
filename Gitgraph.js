@@ -132,7 +132,7 @@ var Gitgraph = function(args){
 			        'background:white;height:55px;text-align:center;width:'+(this.width+14)+'px');
 				//Get particiption data
 				dojo.xhrGet({
-					url: 'http://bouchon.github.com/Gitgraph/bin/gitgraph.php?user='+args.user+'&repo='+args.repo,
+					url: 'http://logicalcognition.com/files/gitgraphFiles/gitgraph.php?user='+args.user+'&repo='+args.repo,
 					handleAs: 'json',
 					preventCache: true,
 					load: dojo.hitch(this,function(data){
