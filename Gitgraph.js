@@ -160,7 +160,7 @@ var Gitgraph = function(args){
 		else this.kickStart.bind(this)();
 		
 		//build container
-		this.graphContainer = document.creatElement('div');
+		this.graphContainer = document.createElement('div');
 		this.node.appendChild(this.graphContainer);
 		
 		return this.graphContainer;
