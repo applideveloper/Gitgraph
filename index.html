@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gitgraph by bouchon</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/bouchon/Gitgraph">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/bouchon/Gitgraph/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/bouchon/Gitgraph/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Gitgraph</h1>
+          <p>pure js github participation graph</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/bouchon">bouchon</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h2>About</h2>
+
+<p>Show a Github Participation graph anywhere using this simple JS script. All data is loaded asynchronously and in real-time. It uses a canvas element just like the actual participation graph does.</p>
+
+<h2>Usage</h2>
+
+<p>Paste into your page's HEAD</p>
+
+<div class="highlight">
+<pre><span class="go">&lt;script src="http://bouchon.github.com/Gitgraph/Gitgraph.js"&gt;&lt;/script&gt;</span>
+</pre>
+</div>
+
+
+<p>From within a script tag or a JS file</p>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Gitgraph</span><span class="p">({</span> 
+  <span class="nx">user</span>    <span class="o">:</span> <span class="s1">'bouchon'</span><span class="p">,</span>       <span class="c1">// any github username</span>
+  <span class="nx">repo</span>    <span class="o">:</span> <span class="s1">'coweb'</span><span class="p">,</span>         <span class="c1">// name of repo</span>
+  <span class="nx">domNode</span> <span class="o">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span>   <span class="c1">// (optional) domNode to attach to </span>
+  <span class="nx">width</span>   <span class="o">:</span> <span class="s1">'416px'</span>          <span class="c1">// (optional) custom graph width</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<p>Or use it as a jQuery plugin</p>
+
+<div class="highlight">
+<pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#demoHolder'</span><span class="p">).</span><span class="nx">gitgraph</span><span class="p">({</span>
+  <span class="nx">user</span><span class="o">:</span><span class="s1">'bouchon'</span><span class="p">,</span>          <span class="c1">// any github username</span>
+  <span class="nx">repo</span><span class="o">:</span><span class="s1">'coweb'</span><span class="p">,</span>            <span class="c1">// name of repo</span>
+  <span class="nx">width</span><span class="o">:</span> <span class="s1">'416px'</span>           <span class="c1">// (optional) custom graph width</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<p>FYI, the script uses a little Dojo, and will require it if its not already loaded. Nothing to worry about!</p>
+
+<h2>Issues &amp; Features</h2>
+
+<p>File under the Issues section and feel free to fork and pull-request</p>
+
+<h2>License</h2>
+
+<p>WTFPL</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
