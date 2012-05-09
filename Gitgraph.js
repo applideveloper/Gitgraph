@@ -155,13 +155,12 @@ var Gitgraph = function(args){
 		this.width  = args.width ? parseInt(args.width.substring(0,args.width.length-2)) : 416;
 		this.node 	= args.domNode ? args.domNode : document.body;
 		if (!Function.prototype.bind) Function.prototype.bind = this.bind;
-		if(!window.dojo)
-			this.loadScript('http://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dojo/dojo.js',this.kickStart.bind(this));
-		else this.kickStart.bind(this)();
-		
 		//build container
 		this.graphContainer = document.createElement('div');
 		this.node.appendChild(this.graphContainer);
+		if(!window.dojo)
+			this.loadScript('http://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dojo/dojo.js',this.kickStart.bind(this));
+		else this.kickStart.bind(this)();
 		
 		return this.graphContainer;
 	}
