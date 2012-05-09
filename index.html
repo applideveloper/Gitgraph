@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/respond.js"></script>
+    <script src="http://bouchon.github.com/Gitgraph/Gitgraph.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -40,7 +41,16 @@
 
         <h2>About</h2>
 
-<p>Show a Github Participation graph anywhere using this simple JS script. All data is loaded asynchronously and in real-time. It uses a canvas element just like the actual participation graph does.</p>
+        <table>
+                    <tr>
+                        <td style="vertical-align:top;border-right:1px solid #434343; text-align:justify;border-bottom:0px !important;">
+                            <p>Show a Github Participation graph anywhere using this simple JS script. All data is loaded asynchronously and in real-time. It uses a canvas element just like the actual participation graph does.</p>
+                        </td>
+                        <td id="demo" style="vertical-align:top;border-bottom:0px !important;">
+
+                        </td>
+                    </tr>
+                </table>
 
 <h2>Usage</h2>
 
@@ -92,4 +102,12 @@
     <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
     
   </body>
+  <script>
+    var graph = new Gitgraph({ 
+      user    : 'bouchon',       // any github username
+      repo    : 'coweb',         // name of repo
+      domNode : document.getElementById("demo"),   // (optional) domNode to attach to 
+      width   : '416px'          // (optional) custom graph width
+    });
+  </script>
 </html>
