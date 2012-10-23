@@ -3,7 +3,7 @@
 // http://bouchon.github.com/Gitgraph
 //
 
-var Gitgraph = function(args){
+window.Gitgraph = function(args){
 	if(!args || !args.user || !args.repo){
 		throw new Error('Gitgraph: missing user and/or repo arg ');
 	}else{
@@ -60,7 +60,7 @@ var Gitgraph = function(args){
 		//Builds graph key
 		this.createKey = function(){
 		    var img = dojo.create('img',{
-				src:'http://bouchon.github.com/Gitgraph/bin/gitgraph.png',
+				src:'http://bitpshr.github.com/Gitgraph/bin/gitgraph.png',
 				style:'position:relative;top:-11px;'
 			},this.graphContainer);
 			var currHeight = img.offsetHeight;
@@ -132,7 +132,7 @@ var Gitgraph = function(args){
 			        'background:white;height:55px;text-align:center;width:'+(this.width+14)+'px');
 				//Get particiption data
 				dojo.xhrGet({
-					url: 'http://simplistic.me/files/gitgraphFiles/gitgraph.php?user='+args.user+'&repo='+args.repo,
+					url: 'http://bitpshr.info/files/gitgraphFiles/gitgraph.php?user='+args.user+'&repo='+args.repo,
 					handleAs: 'json',
 					preventCache: true,
 					load: dojo.hitch(this,function(data){
