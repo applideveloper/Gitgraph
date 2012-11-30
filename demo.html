@@ -13,7 +13,7 @@
         	body{
         		background:url(http://subtlepatterns.com/patterns/always_grey.png);
         		text-align: center;
-        		color:#AAA;
+        		color:#BBB;
         		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         	}
 
@@ -110,10 +110,9 @@
 	</head>
 	<body>
 	 	<div class="content">
-	 		<div class="title">Gitgraph</div>
+	 		<div class="title"><a href="https://github.com/bitpshr/Gitgraph">Gitgraph</a></div>
 	 		<div class="subtitle">
-	 			Dirt simple <a href="http://dojotoolkit.org">Dojo</a>-powered GitHub 
-	 			participation graphs built with a canvas element and sorcery.
+	 			Dirt simple GitHub participation graphs built with a canvas element and sorcery.
 	 		</div>
 			<div id="graphDiv"></div>
 			<div id="graphDiv2"></div>
@@ -130,7 +129,6 @@
 	 		</div>
 	 	</div>
 	</body>
-    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dojo/dojo.js"></script>
 	<script src="Gitgraph.js"></script>
 	<script>
 		var graph = new Gitgraph({ 
@@ -150,9 +148,9 @@
 			domNode : document.getElementById("graphDiv2"),   // (optional) domNode to attach to 
 			width   : 800,          // (optional) custom graph width
 			height  : 50,
-			allColor: "rgb(202, 202, 202)",
-			userColor: "rgb(51, 102, 153)",
-			background: "white"
+			allColor: "#DE0052",
+			userColor: "#4C10AE",
+			background: "#AAA"
 		});
 		graph2.className += "graph";
 		var graph3 = new Gitgraph({ 
@@ -161,9 +159,9 @@
 			domNode : document.getElementById("graphDiv3"),   // (optional) domNode to attach to 
 			width   : 800,          // (optional) custom graph width
 			height  : 100,
-			allColor: "rgb(202, 202, 202)",
-			userColor: "rgb(51, 102, 153)",
-			background: "white"
+			allColor: "#FFD073",
+			userColor: "#FF4040",
+			background: "#5CCCCC"
 		});
 		graph3.className += "graph";
 		var graph4 = new Gitgraph({ 
@@ -172,9 +170,9 @@
 			domNode : document.getElementById("graphDiv4"),   // (optional) domNode to attach to 
 			width   : 800,          // (optional) custom graph width
 			height  : 70,
-			allColor: "rgb(202, 202, 202)",
-			userColor: "rgb(51, 102, 153)",
-			background: "white"
+			allColor: "#025167",
+			userColor: "#86B32D",
+			background: "#FF7D73"
 		});
 		graph4.className += "graph";
 	</script>
