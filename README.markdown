@@ -4,7 +4,7 @@ Dirt simple GitHub participation graphs built with a `<canvas>` element and sorc
 ##Usage
 1. Paste into your page's HEAD
 ```console
-<script src="https://raw.github.com/bitpshr/Gitgraph/master/Gitgraph.js"></script>
+<script src="Gitgraph.min.js"></script>
 ```
 
 2. From within a script tag or a JS file
