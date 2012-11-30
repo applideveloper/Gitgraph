@@ -14,8 +14,11 @@ window.Gitgraph = function(args){
 		"dojo/domReady!"
 	], function(domConstruct, domAttr, lang, array, xhr){
 		// 1. Grab args
-	    var h 		= args.height ? parseInt(args.height.substr(0,args.height.length-2)) : 40;
-		var w  		= args.width ? parseInt(args.width.substr(0,args.width.length-2)) : 416;
+	    var h 		= args.height || 40;
+		var w  		= args.width || 416;
+        var bg      = args.background || "white";
+        var userColor = args.userColor || 'rgb(51, 102, 153)';
+        var allColor  = args.allColor || 'rgb(202, 202, 202)';
 		var node  	= args.domNode || document.body;
 
 		// 2. Build container (the inline styles are ugly but k.i.s.s.)
@@ -23,7 +26,7 @@ window.Gitgraph = function(args){
 			'<img style="width:30px;height:30px;position:absolute;top:50%;margin-top:-15px;" src='+
 			'"http://senoda.com/images/site/spinner.gif"/>');
 		domAttr.set(graphContainer, "style", 
-			'padding:5px; border-radius:4px; background:white;position:relative;'+
+			'padding:5px; border-radius:4px; background:'+bg+';position:relative;'+
 	        'height:'+h+'px;text-align:center;width:'+w+'px');
 		domConstruct.place(graphContainer, node, "first");
 
@@ -49,16 +52,16 @@ window.Gitgraph = function(args){
 			var width	= w / total.length;
 			var height 	= h;
 			var max		= Math.max.apply(Math, total);
-			var scale  	= max >= height ? parseFloat(height - 1) / max : 1;
+			var scale  	= parseFloat(height - 1) / max;
 			// 6. Function to render each rectangle
 			var render 	= function (value, index){
 				value *= scale;
 				c.fillRect(index * width, height - value, width - 1, value);
 			};
 			// 8. Set some styles n' stuff
-			c.fillStyle = 'rgb(202, 202, 202)';
+			c.fillStyle = allColor;
 			array.forEach(total, render);
-			c.fillStyle = 'rgb(51, 102, 153)';
+			c.fillStyle = userColor;
 			array.forEach(own, render);
 		});
 	});
