@@ -1,9 +1,10 @@
 ##About
-Dirt simple GitHub participation graphs built with a Canvas element and sorcery.
+Dirt simple [Dojo](http://dojotoolkit.org)-powered GitHub participation graphs built with a `<canvas>` element and sorcery.
 
 ##Usage
 1. Paste into your page's HEAD
 ```console
+<script src="//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dojo/dojo.js"></script>
 <script src="https://raw.github.com/bitpshr/Gitgraph/master/Gitgraph.js"></script>
 ```
 
