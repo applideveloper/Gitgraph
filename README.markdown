@@ -1,4 +1,6 @@
-##About
+[Gitgraph](http://bitpshr.info/gitgraph)
+=================
+
 Dirt simple GitHub participation graphs built with a `<canvas>` element and sorcery.
 
 ##Usage
