@@ -1,5 +1,5 @@
 ##About
-Dirt simple [GitHub participation graphs built with a `<canvas>` element and sorcery.
+Dirt simple GitHub participation graphs built with a `<canvas>` element and sorcery.
 
 ##Usage
 1. Paste into your page's HEAD
@@ -20,6 +20,9 @@ Dirt simple [GitHub participation graphs built with a `<canvas>` element and sor
         background  : "white"                // (optional) background styles
     });
 ```
+
+##Limitations
+GitHub hasn't exposed participation data via the [api](http://developer.github.com/v3/) yet, but plans to. Until then, I a [simple proxy](http://benalman.com/code/projects/php-simple-proxy/docs/files/ba-simple-proxy-php.html) is required via my domain.
 
 ##License
 WTFPL
