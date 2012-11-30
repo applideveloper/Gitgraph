@@ -1,42 +1,25 @@
-##Gitgraph
-
-Pure JS github participation graph using canvas element. [Demo](http://bouchon.github.com/Gitgraph).
+##About
+Dirt simple GitHub participation graphs built with a Canvas element and sorcery.
 
 ##Usage
+1. Paste into your page's HEAD
+```console
+<script src="https://raw.github.com/bitpshr/Gitgraph/master/Gitgraph.js"></script>
+```
 
-* Paste into your page's HEAD
-
-	```console
-	<script src="http://raw.github.com/bouchon/Gitgraph/master/Gitgraph.js"></script>
-	```
-
-* From within a script tag or a JS file
-	
-	```javascript
-	var graph = new Gitgraph({ 
-	  user    : 'bouchon',       // any github username
-	  repo    : 'coweb',         // name of repo
-	  domNode : document.body,   // (optional) domNode to attach to 
-	  width   : '416px'          // (optional) custom graph width
-	});
-	```
-
-* Or use it as a jQuery plugin
-
-	```javascript
-	$('#demoHolder').gitgraph({
-		user:'bouchon',          // any github username
-		repo:'Gitgraph',            // name of repo
-		width: '416px'           // (optional) custom graph width
-	});
-	```
-	
-FYI, the script uses a little Dojo, and will require it if its not already loaded. Nothing to worry about!
-
-##Issues & Features
-
-File under the Issues section and feel free to fork and pull-request
+2. From within a script tag or a JS file
+```javascript
+    var graph = new Gitgraph({ 
+        user    : 'nex3',                // any github username
+        repo    : 'sass',                // name of repo
+        domNode : document.body,         // (optional) DOM node to attach to 
+        width   : 800,                   // (optional) graph width
+        height  : 300,                   // (optional) graph height
+        allColor: "rgb(202, 202, 202)",  // (optional) color of user's participation
+        userColor: "rgb(51, 102, 153)",  // (optional) color of total participation
+        background: "white"              // (optional) background styles
+    });
+```
 
 ##License
-
 WTFPL
