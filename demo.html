@@ -1,27 +1,29 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-	<head>
-	    <title></title>
-	    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="author" content="Paul Bouchon" />
-        <meta name="description" content="" />
-        <link rel="icon" href="images/favicon.ico"> 
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta lang="en">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Dirt simple Dojo-powered GitHub participation graphs built with a canvas element and sorcery.">
+        <meta name="author" content="Paul Bouchon">
+        <title>Gitgraph</title>
         <style>
         	@import url(http://fonts.googleapis.com/css?family=Sail);
 
         	body{
         		background:url(http://subtlepatterns.com/patterns/always_grey.png);
         		text-align: center;
+        		color:#AAA;
+        		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        	}
+
+        	a{
+        		color:white;
+        		text-decoration: none;
         	}
 
         	.content{
         		display: inline-block;
-        		position:absolute;
-        		top:50%;
-        		left:50%;
-        		margin-top:-400px;
-        		margin-left:-400px;
         	}
 
         	.graph{
@@ -30,25 +32,102 @@
         	}
 
         	.title{
-        		letter-spacing: 20px;
-        		position:relative;
-        		left:-15px;
         		font-smoothing: antialiased;
     			text-shadow: 0px 0px 10px white;
         		color:white;
-        		font-size:190px;
+        		font-size:140px;
         		font-weight: bold;
+        		margin-bottom:20px;
         		font-family: 'Sail', cursive;
         	}
+
+        	.stars, .forks{
+        		
+        	}
+
+        	.subtitle{
+        		font-size: 24px;
+        		width:800px;
+        		margin-right: auto;
+        		margin-left: auto;
+        		margin-bottom:40px;
+        	}
+
+			button.cupid-green {
+				background-color: #7fbf4d;
+				background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+				background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+				background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+				background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+				background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+				background-image: linear-gradient(top, #7fbf4d, #63a62f);
+				border: 1px solid #63a62f;
+				border-bottom: 1px solid #5b992b;
+				border-radius: 3px;
+				-webkit-box-shadow: inset 0 1px 0 0 #96ca6d;
+				box-shadow: inset 0 1px 0 0 #96ca6d;
+				color: #fff;
+				font: bold 16px/1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+				padding: 7px 0 8px 0;
+				text-align: center;
+				text-shadow: 0 -1px 0 #4c9021;
+				width: 300px;
+				height:70px; 
+				margin-top:30px;
+				margin-bottom:50px;
+			}
+
+  			button.cupid-green:hover {
+			    background-color: #76b347;
+			    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b347), color-stop(100%, #5e9e2e));
+			    background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
+			    background-image: -moz-linear-gradient(top, #76b347, #5e9e2e);
+			    background-image: -ms-linear-gradient(top, #76b347, #5e9e2e);
+			    background-image: -o-linear-gradient(top, #76b347, #5e9e2e);
+			    background-image: linear-gradient(top, #76b347, #5e9e2e);
+			    -webkit-box-shadow: inset 0 1px 0 0 #8dbf67;
+			    box-shadow: inset 0 1px 0 0 #8dbf67;
+			    cursor: pointer; 
+			}
+  
+  			button.cupid-green:active {
+			    border: 1px solid #5b992b;
+			    border-bottom: 1px solid #538c27;
+			    -webkit-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
+			    box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee; 
+			}
+
+			.copyright a{
+				text-decoration: none;
+			}
+
+			.copyright{
+				font-size: 14px;
+				text-align: center;
+			}
+
         </style>
 	</head>
 	<body>
 	 	<div class="content">
 	 		<div class="title">Gitgraph</div>
+	 		<div class="subtitle">
+	 			Dirt simple <a href="http://dojotoolkit.org">Dojo</a>-powered GitHub 
+	 			participation graphs built with a canvas element and sorcery.
+	 		</div>
 			<div id="graphDiv"></div>
 			<div id="graphDiv2"></div>
 			<div id="graphDiv3"></div>
 			<div id="graphDiv4"></div>
+			<a href="http://github.com/bitpshr/Gitgraph"><button class="cupid-green">Download on GitHub</button></a><br>
+	 		<div class="copyright">
+	 			<iframe class="stars" src="http://bitpshr.info/cdn/github-btn.html?user=bitpshr&repo=Gitgraph&type=watch&count=true&size=small" 
+	 				allowtransparency="true" frameborder="0" scrolling="0" width="90px" height="30px"></iframe>
+				<iframe class="forks" src="http://bitpshr.info/cdn/github-btn.html?user=bitpshr&repo=Gitgraph&type=fork&count=true&size=small" 
+	 				allowtransparency="true" frameborder="0" scrolling="0" width="90px" height="30px"></iframe>
+	 			<br>
+	 			Built by <a href="http://twitter.com/bitpshr">@bitpshr</a> under the <a href="http://sam.zoy.org/wtfpl/">WTFPL</a> license.
+	 		</div>
 	 	</div>
 	</body>
     <script src="//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dojo/dojo.js"></script>
@@ -59,29 +138,29 @@
 			repo    : 'sass',         // name of repo
 			domNode : document.getElementById("graphDiv"),   // (optional) domNode to attach to 
 			width   : 800,          // (optional) custom graph width
-			height  : 80,
+			height  : 170,
 			allColor: "rgb(202, 202, 202)",
 			userColor: "rgb(51, 102, 153)",
 			background: "white"
 		});
 		graph.className += "graph";
 		var graph2 = new Gitgraph({ 
-			user    : 'nex3',       // any github username
-			repo    : 'sass',         // name of repo
-			domNode : document.getElementById("graphDiv"),   // (optional) domNode to attach to 
+			user    : 'josephg',       // any github username
+			repo    : 'sharejs',         // name of repo
+			domNode : document.getElementById("graphDiv2"),   // (optional) domNode to attach to 
 			width   : 800,          // (optional) custom graph width
-			height  : 30,
+			height  : 50,
 			allColor: "rgb(202, 202, 202)",
 			userColor: "rgb(51, 102, 153)",
 			background: "white"
 		});
 		graph2.className += "graph";
 		var graph3 = new Gitgraph({ 
-			user    : 'nex3',       // any github username
-			repo    : 'sass',         // name of repo
-			domNode : document.getElementById("graphDiv"),   // (optional) domNode to attach to 
+			user    : 'imathis',       // any github username
+			repo    : 'octopress',         // name of repo
+			domNode : document.getElementById("graphDiv3"),   // (optional) domNode to attach to 
 			width   : 800,          // (optional) custom graph width
-			height  : 120,
+			height  : 100,
 			allColor: "rgb(202, 202, 202)",
 			userColor: "rgb(51, 102, 153)",
 			background: "white"
@@ -90,13 +169,26 @@
 		var graph4 = new Gitgraph({ 
 			user    : 'nex3',       // any github username
 			repo    : 'sass',         // name of repo
-			domNode : document.getElementById("graphDiv"),   // (optional) domNode to attach to 
+			domNode : document.getElementById("graphDiv4"),   // (optional) domNode to attach to 
 			width   : 800,          // (optional) custom graph width
-			height  : 200,
+			height  : 70,
 			allColor: "rgb(202, 202, 202)",
 			userColor: "rgb(51, 102, 153)",
 			background: "white"
 		});
 		graph4.className += "graph";
+	</script>
+	<script type="text/javascript">
+		var _gauges = _gauges || [];
+		(function() {
+			var t   = document.createElement('script');
+			t.type  = 'text/javascript';
+			t.async = true;
+			t.id    = 'gauges-tracker';
+			t.setAttribute('data-site-id', '50b93314f5a1f55a5800000c');
+			t.src = '//secure.gaug.es/track.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(t, s);
+		})();
 	</script>
 </html>
