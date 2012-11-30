@@ -25,4 +25,4 @@ Dirt simple GitHub participation graphs built with a `<canvas>` element and sorc
 GitHub hasn't exposed participation data via the [api](http://developer.github.com/v3/) yet, but plans to. Until then, requests funnel through a [simple proxy](http://benalman.com/code/projects/php-simple-proxy/docs/files/ba-simple-proxy-php.html) via [my vps](http://bitpshr.info).
 
 ##License
-WTFPL
+[WTFPL](http://sam.zoy.org/wtfpl/)
