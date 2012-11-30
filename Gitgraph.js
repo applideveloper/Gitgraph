@@ -4,135 +4,63 @@
 //
 
 window.Gitgraph = function(args){
+	var graphContainer = document.createElement("div");
 	require([
 		"dojo/dom-construct",
 		"dojo/dom-attr", 
 		"dojo/_base/lang",
+		"dojo/_base/array",
 		"dojo/request/xhr",
 		"dojo/domReady!"
-	], function(domConstruct, domAttr, lang, xhr){
-	    var app = {
-			height 	: 20,
-			width  	: args.width ? parseInt(args.width.substring(0,args.width.length-2)) : 416,
-			node  	: args.domNode ? args.domNode : document.body,
+	], function(domConstruct, domAttr, lang, array, xhr){
+		// 1. Grab args
+	    var h 		= args.height ? parseInt(args.height.substr(0,args.height.length-2)) : 40;
+		var w  		= args.width ? parseInt(args.width.substr(0,args.width.length-2)) : 416;
+		var node  	= args.domNode || document.body;
 
-			init : function(){
-				//build container
-				this.graphContainer = this._createContainer();
-				//get particiption data
-				this.getParticipationData().then(
-					lang.hitch(this, "_showGraph"), 
-					lang.hitch(this, "_showError")
-				);
-			},
+		// 2. Build container (the inline styles are ugly but k.i.s.s.)
+		domAttr.set(graphContainer, "innerHTML", 
+			'<img style="width:30px;height:30px;position:absolute;top:50%;margin-top:-15px;" src='+
+			'"http://senoda.com/images/site/spinner.gif"/>');
+		domAttr.set(graphContainer, "style", 
+			'padding:5px; border-radius:4px; background:white;position:relative;'+
+	        'height:'+h+'px;text-align:center;width:'+w+'px');
+		domConstruct.place(graphContainer, node, "first");
 
-			_showGraph: function(data){
-				this.data = data.contents;
-				this.total 	= this.data.all;	//array of all commit data points
-				this.own	= this.data.owner;	//array of just your commit data points
-				// create canvas
-				this.createCanvas();
-				// create bottom of graph img
-				this.createLower();
-				// populate canvas with data points
-				this.populate();
-			},
+		// 3. Build our request url (need to proxy bc GitHub
+		// 	  hasn't exposed this data via the API yet...they plan to)
+		var proxy 	= "http://bitpshr.info/cdn/ba-simple-proxy.php";
+		var params 	= "?url=https://github.com/"+args.user+"/"+args.repo+"/graphs/owner_participation";
 
-			_createContainer: function(){
-				return domConstruct.create("div", {
-					innerHTML 	: '<img style="width:40px;height:40px;" '+
-									'src="http://senoda.com/images/site/spinner.gif"/>',
-					style 		: 'color:grey; position:relative; line-height:15px; '+
-									'border-radius:3px; border:1px solid #E5E5E5;background:white;'+
-			        				'height:55px;text-align:center;width:'+(this.width+14)+'px'
-				}, this.node); 
-			},
-
-
-
-			_showError: function(err){
-				this.graphContainer.innerHTML = '';
-				dojo.create('div',{
-					innerHTML:'Can not find repository.',
-					style:'margin-top:20px;font:12px arial;'
-				},this.graphContainer);
-			},
-
-			getParticipationData: function(){
-				var self = this;
-				return xhr('http://bitpshr.info/cdn/ba-simple-proxy.php?url=https://github.com/'+args.user+'/'+args.repo+"/graphs/owner_participation", {
-					handleAs: 'json'
-				});	
-			},
-			
-			//Render canvas element
-			createCanvas : function(){
-			    this.graphContainer.innerHTML = '';
-				this.canvas	= dojo.create('canvas',{
-				    width:this.width,height:this.height,style:'position:relative;margin-top:11px;'
-				},this.graphContainer);
-			},
-			
-			//Render bottom part of graph
-			createLower : function(){
-			    var img = this.createKey();
-			    //Participation key
-				dojo.create('span',{
-					innerHTML:'52 week participation',
-					style:'position:absolute;right:7px;font:10px arial;'
-				},img,'after');
-				//Commits by owner key
-				dojo.create('span',{
-					innerHTML:'commits by owner',
-					style:'position:absolute;left:82px;font:10px arial;'
-				},img,'after');
-				//All commits key
-				dojo.create('span',{
-					innerHTML:'all commits',
-					style:'position:absolute;left:16px;float:left;font:10px arial;'
-				},img,'after');
-				//Color legends
-				dojo.create('div',{
-					style:'display:inline-block;position:absolute;left:7px;'+
-					    'background:lightgrey;width:7px;height:7px;top:35px'
-				},img,'after');
-				dojo.create('div',{
-					style:'display:inline-block;position:absolute;left:73px;'+
-					    'background:#3377CC;width:7px;height:7px;top:35px'
-				},img,'after');
-			},
-			
-			//Builds graph key
-			createKey : function(){
-			    var img = dojo.create('img',{
-					src:'http://bitpshr.github.com/Gitgraph/bin/gitgraph.png',
-					style:'position:relative;top:-11px;'
-				},this.graphContainer);
-				var currHeight = img.offsetHeight;
-				dojo.style(img,'width',this.width+'px');
-				dojo.style(img,'height','4px');
-				dojo.create('br',{},img,'after');
-				return img;
-			},
-			
-			//Populates graph with data points
-			populate : function(){
-			    var context	= this.canvas.getContext("2d"),
-					width	= this.width / this.total.length,
-					height 	= this.height,
-					max		= Math.max.apply(Math, this.total),
-					scale  	= max >= height ? parseFloat(height - 1) / max : 1;
-				function render(value, index){
-					value *= scale;
-					context.fillRect(index * width, height - value, width - 1, value);
-				}
-				context.fillStyle = 'rgb(202, 202, 202)';
-				dojo.forEach(this.total, render);
-				context.fillStyle = 'rgb(51, 102, 153)';
-				dojo.forEach(this.own, render);
-			}
-	    };
-
-	    lang.hitch(app, "init")();
+		// 4. Fetch participation data
+		xhr(proxy+params, {
+			handleAs: 'json'
+		}).then(function(data){
+			var total 	= data.contents.all;
+			var own 	= data.contents.owner;
+			// 5. build canvas
+			var canvas	= domConstruct.create('canvas',{
+			    width: w,
+			    height: h,
+			    style : 'position:relative;'
+			},graphContainer,"only");
+			// 7. Do some gd math
+			var c		= canvas.getContext("2d");
+			var width	= w / total.length;
+			var height 	= h;
+			var max		= Math.max.apply(Math, total);
+			var scale  	= max >= height ? parseFloat(height - 1) / max : 1;
+			// 6. Function to render each rectangle
+			var render 	= function (value, index){
+				value *= scale;
+				c.fillRect(index * width, height - value, width - 1, value);
+			};
+			// 8. Set some styles n' stuff
+			c.fillStyle = 'rgb(202, 202, 202)';
+			array.forEach(total, render);
+			c.fillStyle = 'rgb(51, 102, 153)';
+			array.forEach(own, render);
+		});
 	});
+	return graphContainer;
 };
