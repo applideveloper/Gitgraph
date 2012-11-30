@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+	<head>
+	    <title></title>
+	    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="author" content="Paul Bouchon" />
+        <meta name="description" content="" />
+        <link rel="icon" href="images/favicon.ico"> 
+        <style>
+        	@import url(http://fonts.googleapis.com/css?family=Sail);
+
+        	body{
+        		background:url(http://subtlepatterns.com/patterns/always_grey.png);
+        		text-align: center;
+        	}
+
+        	.content{
+        		display: inline-block;
+        		position:absolute;
+        		top:50%;
+        		left:50%;
+        		margin-top:-400px;
+        		margin-left:-400px;
+        	}
+
+        	.graph{
+        		box-shadow: 0 0 5px black;
+        		margin-bottom:20px;
+        	}
+
+        	.title{
+        		letter-spacing: 20px;
+        		position:relative;
+        		left:-15px;
+        		font-smoothing: antialiased;
+    			text-shadow: 0px 0px 10px white;
+        		color:white;
+        		font-size:190px;
+        		font-weight: bold;
+        		font-family: 'Sail', cursive;
+        	}
+        </style>
+	</head>
+	<body>
+	 	<div class="content">
+	 		<div class="title">Gitgraph</div>
+			<div id="graphDiv"></div>
+			<div id="graphDiv2"></div>
+			<div id="graphDiv3"></div>
+			<div id="graphDiv4"></div>
+	 	</div>
+	</body>
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dojo/dojo.js"></script>
+	<script src="Gitgraph.js"></script>
+	<script>
+		var graph = new Gitgraph({ 
+			user    : 'nex3',       // any github username
+			repo    : 'sass',         // name of repo
+			domNode : document.getElementById("graphDiv"),   // (optional) domNode to attach to 
+			width   : 800,          // (optional) custom graph width
+			height  : 80,
+			allColor: "rgb(202, 202, 202)",
+			userColor: "rgb(51, 102, 153)",
+			background: "white"
+		});
+		graph.className += "graph";
+		var graph2 = new Gitgraph({ 
+			user    : 'nex3',       // any github username
+			repo    : 'sass',         // name of repo
+			domNode : document.getElementById("graphDiv"),   // (optional) domNode to attach to 
+			width   : 800,          // (optional) custom graph width
+			height  : 30,
+			allColor: "rgb(202, 202, 202)",
+			userColor: "rgb(51, 102, 153)",
+			background: "white"
+		});
+		graph2.className += "graph";
+		var graph3 = new Gitgraph({ 
+			user    : 'nex3',       // any github username
+			repo    : 'sass',         // name of repo
+			domNode : document.getElementById("graphDiv"),   // (optional) domNode to attach to 
+			width   : 800,          // (optional) custom graph width
+			height  : 120,
+			allColor: "rgb(202, 202, 202)",
+			userColor: "rgb(51, 102, 153)",
+			background: "white"
+		});
+		graph3.className += "graph";
+		var graph4 = new Gitgraph({ 
+			user    : 'nex3',       // any github username
+			repo    : 'sass',         // name of repo
+			domNode : document.getElementById("graphDiv"),   // (optional) domNode to attach to 
+			width   : 800,          // (optional) custom graph width
+			height  : 200,
+			allColor: "rgb(202, 202, 202)",
+			userColor: "rgb(51, 102, 153)",
+			background: "white"
+		});
+		graph4.className += "graph";
+	</script>
+</html>

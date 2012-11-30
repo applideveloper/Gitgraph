@@ -5,6 +5,9 @@
 
 window.Gitgraph = function(args){
 	var graphContainer = document.createElement("div");
+    var node    = args.domNode || document.body;
+    node.appendChild(graphContainer);
+    
 	require([
 		"dojo/dom-construct",
 		"dojo/dom-attr", 
@@ -19,7 +22,6 @@ window.Gitgraph = function(args){
         var bg      = args.background || "white";
         var userColor = args.userColor || 'rgb(51, 102, 153)';
         var allColor  = args.allColor || 'rgb(202, 202, 202)';
-		var node  	= args.domNode || document.body;
 
 		// 2. Build container (the inline styles are ugly but k.i.s.s.)
 		domAttr.set(graphContainer, "innerHTML", 
