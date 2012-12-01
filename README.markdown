@@ -4,7 +4,7 @@
 Dirt simple GitHub participation graphs built with a `<canvas>` element and sorcery.
 
 ##Usage
-1. Paste into your page's HEAD
+1. Paste right before your page's closing `</body>` tag
 ```console
 <script src="Gitgraph.min.js"></script>
 ```
