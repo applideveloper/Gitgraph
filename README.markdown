@@ -19,7 +19,8 @@ Dirt simple GitHub participation graphs built with a `<canvas>` element and sorc
         height      : 300,                   // (optional) graph height
         allColor    : "rgb(202, 202, 202)",  // (optional) color of user's participation
         userColor   : "rgb(51, 102, 153)",   // (optional) color of total participation
-        background  : "white"                // (optional) background styles
+        background  : "white",               // (optional) background styles
+        showName    : true                   // (optional) show or hide name of user / repo
     });
 ```
 
