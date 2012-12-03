@@ -17,7 +17,7 @@ window.Gitgraph = function(args){
     var showName = args.showName!=null ? args.showName : true;
 
 	// 2. Build container (the inline styles are ugly but k.i.s.s.)
-	graphContainer.innerHTML = '<img style="width:30px;height:30px;position:absolute;top:50%;margin-top:-15px;" src='+
+	graphContainer.innerHTML = '<img style="width:30px;height:30px;position:absolute;left:50%;mergin-left:-15px;top:50%;margin-top:-15px;" src='+
 		'"http://senoda.com/images/site/spinner.gif"/>';
 	graphContainer.style.cssText = 'padding:5px; border-radius:4px; background:'+bg+';position:relative;'+
         'height:'+h+'px;text-align:center;width:'+w+'px';
@@ -40,7 +40,7 @@ window.Gitgraph = function(args){
 				var repo 	= "https://github.com/"+args.user+"/"+args.repo+"/";
 
 				// 5. build canvas
-				graphContainer.innerHTML = "";
+				//graphContainer.innerHTML = "";
 				var canvas = document.createElement("canvas");
 				canvas.width = w;
 				canvas.height = h;
