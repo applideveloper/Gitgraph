@@ -40,7 +40,7 @@ window.Gitgraph = function(args){
 				var repo 	= "https://github.com/"+args.user+"/"+args.repo+"/";
 
 				// 5. build canvas
-				//graphContainer.innerHTML = "";
+				graphContainer.innerHTML = "";
 				var canvas = document.createElement("canvas");
 				canvas.width = w;
 				canvas.height = h;
