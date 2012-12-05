@@ -16,6 +16,7 @@ var Gitgraph = (function (args) {
 	    var bg      = args.background || "white";
 	    var userColor = args.userColor || 'rgb(51, 102, 153)';
 	    var allColor  = args.allColor || 'rgb(202, 202, 202)';
+	    var showName = args.showName!=null ? args.showName : true;
 
 		// 2. Build container (the inline styles are ugly but k.i.s.s.)
 		graphContainer.innerHTML = '<img style="width:30px;height:30px;position:absolute;top:50%;margin-top:-15px;" src='+
@@ -50,12 +51,12 @@ var Gitgraph = (function (args) {
 					href.href = repo;
 					graphContainer.appendChild(href);
 					href.appendChild(canvas);
-
-					// 6. build repo indicator
-					var indicator = document.createElement("div");
-					indicator.style.cssText = "font-size:12px;border-radius:3px;color:#EEE;background-color:rgba(0,0,0,0.5);display:inline-block;padding:5px;position:absolute;top:5px;right:5px;";
-					indicator.innerHTML = args.user+"/"+args.repo;
-					href.appendChild(indicator);
+					if(showName){
+						var indicator = document.createElement("div");
+						indicator.style.cssText = "font-size:12px;border-radius:3px;color:#EEE;background-color:rgba(0,0,0,0.5);display:inline-block;padding:5px;position:absolute;top:5px;right:5px;";
+						indicator.innerHTML = args.user+"/"+args.repo;
+						href.appendChild(indicator);
+					}
 
 					// 7. Do some gd math
 					var c		= canvas.getContext("2d");
