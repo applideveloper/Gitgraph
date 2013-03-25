@@ -10,7 +10,7 @@ var Gitgraph = (function (args) {
 			bg = args.background || "white",
 			userColor = args.userColor || 'rgb(51, 102, 153)',
 			allColor = args.allColor || 'rgb(202, 202, 202)',
-			showName = args.showName || true;
+			showName = args.hasOwnProperty("showName") ? args.showName : true;
 
 		// build container (the inline styles are ugly but...yeah)
 		var spinner = new Spinner().spin(container);
