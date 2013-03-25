@@ -1,0 +1,13 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Paul Bouchon -- author -- @bitpshr
+
+# TECHNOLOGY COLOPHON
+	JavaScript
+	HTML5
+   	CSS3 (Stylus)
+    Modernizr
+    Grunt

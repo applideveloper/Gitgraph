@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Gitgraph</title>
+        <meta name="author" content="Paul Bouchon (@bitpshr)">
+        <meta name="description" content="Dirt simple Dojo-powered GitHub participation graphs built with a canvas element and sorcery.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href='http://fonts.googleapis.com/css?family=Sail' rel='stylesheet' type='text/css'>
+        <link rel="shortcut icon" href="img/favicon.png">
+        <link rel="apple-touch-icon" href="img/favicon.png">
+        <link rel="stylesheet" href="styles/app.css">
+
+        <script src="vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="content">
+	 		<div class="title">Gitgraph</div>
+	 		<div class="subtitle">
+	 			Dirt simple GitHub participation graphs built with <a href="http://bitpshr.info/graphs/">a canvas element and sorcery</a>.
+	 		</div>
+			<div class="graph" id="graphDiv"></div>
+			<div class="graph" id="graphDiv2"></div>
+			<div class="graph" id="graphDiv3"></div>
+			<div class="graph" id="graphDiv4"></div>
+			<a href="http://github.com/bitpshr/Gitgraph"><button class="cupid-green">Download on GitHub</button></a><br>
+	 		<div class="copyright">
+	 			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bitpshr.info/gitgraph" data-text="GitHub participation graphs using canvas" data-via="bitpshr" data-hashtags="javascript">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	 			<iframe class="stars" src="http://bitpshr.info/cdn/github-btn.html?user=bitpshr&repo=Gitgraph&type=watch&count=true&size=small" 
+	 				allowtransparency="true" frameborder="0" scrolling="0" width="85px" height="30px"></iframe>
+				<iframe class="forks" src="http://bitpshr.info/cdn/github-btn.html?user=bitpshr&repo=Gitgraph&type=fork&count=true&size=small" 
+	 				allowtransparency="true" frameborder="0" scrolling="0" width="85px" height="30px"></iframe>
+	 			<br>
+	 			Built by <a href="http://twitter.com/bitpshr">@bitpshr</a> under the <a href="http://sam.zoy.org/wtfpl/">WTFPL</a> license.
+	 		</div>
+	 	</div>
+    </body>
+    <script src="../Gitgraph.min.js"></script>
+	<script>
+		// Build some example graphs
+		var graph = new Gitgraph({ 
+			user    : 'nex3',
+			repo    : 'sass',
+			domNode : document.getElementById("graphDiv"),
+			width   : 800,
+			height  : 170,
+			allColor: "rgb(202, 202, 202)",
+			userColor: "rgb(51, 102, 153)",
+			background: "white"
+		});
+		graph.className += "graph";
+
+		var graph2 = new Gitgraph({ 
+			user    : 'josephg',
+			repo    : 'sharejs',
+			domNode : document.getElementById("graphDiv2"),
+			width   : 800,
+			height  : 50,
+			allColor: "#DE0052",
+			userColor: "#4C10AE",
+			background: "#AAA"
+		});
+		graph2.className += "graph";
+
+		var graph3 = new Gitgraph({ 
+			user    : 'imathis',
+			repo    : 'octopress',
+			domNode : document.getElementById("graphDiv3"),
+			width   : 800,
+			height  : 100,
+			allColor: "#FFD073",
+			userColor: "#FF4040",
+			background: "#5CCCCC"
+		});
+		graph3.className += "graph";
+
+		var graph4 = new Gitgraph({ 
+			user    : 'nex3',
+			repo    : 'sass',
+			domNode : document.getElementById("graphDiv4"),
+			width   : 800,
+			height  : 70,
+			allColor: "#025167",
+			userColor: "#86B32D",
+			background: "#FF7D73"
+		});
+		graph4.className += "graph";
+
+
+		// Guages tracking
+		var _gauges = _gauges || [];
+		(function() {
+			var t   = document.createElement('script');
+			t.type  = 'text/javascript';
+			t.async = true;
+			t.id    = 'gauges-tracker';
+			t.setAttribute('data-site-id', '50b93314f5a1f55a5800000c');
+			t.src = '//secure.gaug.es/track.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(t, s);
+		})();
+	</script>
+</html>
