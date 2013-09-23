@@ -33,7 +33,7 @@ Gitgraph uses [Grunt](http://gruntjs.com) for file linting and uglification. To 
 ```bash
 git clone https://github.com/bitpshr/Gitgraph.git
 cd Gitgraph
-git submodules update --recursive --init
+git submodule update --recursive --init
 npm install
 # hack on Gitgraph.js, run `grunt`, view demo/index.html
 ```

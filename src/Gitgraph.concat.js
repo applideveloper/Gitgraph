@@ -352,7 +352,7 @@ var Gitgraph = (function (args) {
 
 		// Build our request url (need to proxy bc GitHub has
 		// not exposed this data via the API yet; they plan to
-		var proxy = "http://bitpshr.info/cdn/ba-simple-proxy.php",
+		var proxy = "http://cdn.bitpshr.net/simple-proxy/simple-proxy.php",
 			params = "?url=https://github.com/" + args.user + "/" + args.repo + "/graphs/owner_participation";
 
 		// Fetch participation data
@@ -361,8 +361,8 @@ var Gitgraph = (function (args) {
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState==4 && xhr.status==200) {
 				var data = JSON.parse( xhr.responseText );
-				if(data.contents && data.contents.all){
-					var total = data.contents.all,
+				if(data && data.all){
+					var total = data.all,
 						repo = "https://github.com/"+args.user+"/"+args.repo+"/";
 
 					// build canvas
@@ -411,8 +411,8 @@ var Gitgraph = (function (args) {
 						render(total[i], i);
 					}
 					c.fillStyle = userColor;
-					for(i=0, len=data.contents.owner.length; i<len; i++){
-						render(data.contents.owner[i], i);
+					for(i=0, len=data.owner.length; i<len; i++){
+						render(data.owner[i], i);
 					}
 				}
 			}
