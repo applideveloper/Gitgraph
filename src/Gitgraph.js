@@ -40,8 +40,8 @@ var Gitgraph = (function (args) {
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState==4 && xhr.status==200) {
 				var data = JSON.parse( xhr.responseText );
-				if(data && data.all){
-					var total = data.all,
+				if(data && data.contents && data.contents.all){
+					var total = data.contents.all,
 						repo = "https://github.com/"+args.user+"/"+args.repo+"/";
 
 					// build canvas
@@ -90,8 +90,8 @@ var Gitgraph = (function (args) {
 						render(total[i], i);
 					}
 					c.fillStyle = userColor;
-					for(i=0, len=data.owner.length; i<len; i++){
-						render(data.owner[i], i);
+					for(i=0, len=data.contents.owner.length; i<len; i++){
+						render(data.contents.owner[i], i);
 					}
 				}
 			}
